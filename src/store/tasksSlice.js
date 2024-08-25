@@ -22,6 +22,14 @@ const addNewTask = createAsyncThunk(
   }
 );
 
+const deleteTask = createAsyncThunk(
+  'tasks/deleteTask',
+  async (id) => {
+    await axios.delete(`http://localhost:3001/tasks/${id}`);
+    return id;
+  }
+);
+
 const tasksSlice = createSlice({
   name: 'tasks',
   initialState: {
@@ -47,9 +55,13 @@ const tasksSlice = createSlice({
         state.status = 'idle';
         state.tasks.push(action.payload);
       })
+      .addCase(deleteTask.fulfilled, (state, action) => {
+        state.status = 'idle';
+        state.tasks = state.tasks.filter(task => task.id !== action.payload);
+      })
   }
 });
 
-export { getAllTasks, addNewTask };
+export { getAllTasks, addNewTask, deleteTask };
 
 export default tasksSlice.reducer;
