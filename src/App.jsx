@@ -1,9 +1,18 @@
 import Header from "./layout/Header";
 import Footer from "./layout/Footer";
-import Input from "./layout/components/Input";
-import Tasks from "./layout/components/Tasks";
+import Input from "./components/Input";
+import Tasks from "./components/Tasks";
+import { getAllTasks } from "./store/tasksSlice";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
 
 const App = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getAllTasks());
+  }, [dispatch]);
+
   return (
     <main className="main">
       <section className="todo_section">
