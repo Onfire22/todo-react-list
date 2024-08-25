@@ -1,4 +1,6 @@
-body {
+.body {
+  width: 100%;
+  height: 100vh;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
@@ -10,4 +12,116 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+button {
+  display: block;
+  color: inherit;
+  background-color: inherit;
+  cursor: pointer;
+  /* border: none; */
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+.main {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.todo_section {
+  width: 80%
+}
+
+.todo__header-title {
+  width: 100%;
+  text-align: center;
+  font-size: 72px;
+  font-weight: 700;
+  line-height: 120%;
+  letter-spacing: 0%;
+  color: rgba(175, 47, 47, 0.15);
+}
+
+.input {
+  width: 100%;
+  padding: 8px;
+  height: 80px;
+  font-size: 36px;
+}
+
+.input::placeholder {
+  color: rgb(208, 208, 208);
+  font-size: 36px;
+  font-weight: 400;
+  line-height: 120%;
+  letter-spacing: 0%;
+  text-align: left;
+}
+
+.task__item {
+  padding: 8px 8px 8px 24px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: rgb(39, 36, 36);
+  font-size: 36px;
+  font-weight: 400;
+  line-height: 120%;
+  text-align: left;
+  border: 1px solid rgb(208, 208, 208);
+}
+
+.todo__footer {
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.todo__footer-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.todo__filter-control {
+  padding: 8px 16px;
+  color: rgb(103, 99, 99);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 23px;
+  letter-spacing: 0%;
+  text-align: left;
+  border: 1px solid rgba(175, 47, 47, 0.15);
+  border-radius: 3px;
+}
+
+.todo__clear-control {
+  color: rgb(103, 99, 99);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 23px;
+  letter-spacing: 0%;
+  text-align: left;
+  text-decoration-line: underline;
+  border: none;
+}
+
+.todo__footer-count {
+  color: rgb(103, 99, 99);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 23px;
+  letter-spacing: 0%;
 }
