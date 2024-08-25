@@ -1,11 +1,24 @@
 import axios from "axios";
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice, nanoid } from "@reduxjs/toolkit";
 
 const getAllTasks = createAsyncThunk(
   'tasks/getTasks',
   async () => {
     const response = axios.get('http://localhost:3001/tasks');
     return (await response).data;
+  }
+);
+
+const addNewTask = createAsyncThunk(
+  'tasks/newTask',
+  async (title) => {
+    const newTask = {
+      title,
+      status: 'active',
+      id: nanoid(),
+    };
+    await axios.post('http://localhost:3001/tasks', newTask);
+    return newTask;
   }
 );
 
@@ -30,9 +43,13 @@ const tasksSlice = createSlice({
         state.status = 'idle';
         state.tasks = action.payload;
       })
+      .addCase(addNewTask.fulfilled, (state, action) => {
+        state.status = 'idle';
+        state.tasks.push(action.payload);
+      })
   }
 });
 
-export { getAllTasks };
+export { getAllTasks, addNewTask };
 
 export default tasksSlice.reducer;
