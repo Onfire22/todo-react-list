@@ -3,30 +3,42 @@ import { createAsyncThunk, createSlice, nanoid } from "@reduxjs/toolkit";
 
 const getAllTasks = createAsyncThunk(
   'tasks/getTasks',
-  async () => {
-    const response = axios.get('http://localhost:3001/tasks');
-    return (await response).data;
+  async (_, { rejectWithValue }) => {
+    try {
+      const response = axios.get('http://localhost:3001/tasks');
+      return (await response).data;
+    } catch (e) {
+      return rejectWithValue('Failed to load tasks :(');
+    }
   }
 );
 
 const addNewTask = createAsyncThunk(
   'tasks/newTask',
-  async (title) => {
+  async (title, { rejectWithValue }) => {
     const newTask = {
       title,
       completed: false,
       id: nanoid(),
     };
-    await axios.post('http://localhost:3001/tasks', newTask);
-    return newTask;
+    try {
+      await axios.post('http://localhost:3001/tasks', newTask);
+      return newTask;
+    } catch (e) {
+      return rejectWithValue('Failed to create a new task :(');
+    }
   }
 );
 
 const deleteTask = createAsyncThunk(
   'tasks/deleteTask',
-  async (id) => {
-    await axios.delete(`http://localhost:3001/tasks/${id}`);
-    return id;
+  async (id, { rejectWithValue }) => {
+    try {
+      await axios.delete(`http://localhost:3001/tasks/${id}`);
+      return id;
+    } catch (e) {
+      return rejectWithValue('Failed to delete task :(');
+    }
   }
 );
 
@@ -66,24 +78,13 @@ const tasksSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-    .addCase(getAllTasks.pending, (state) => {
-        state.status = 'precess';
-        state.error = null;
-      })
-      .addCase(getAllTasks.rejected, (state) => {
-        state.status = 'idle';
-        state.error = 'ERROR';
-      })
       .addCase(getAllTasks.fulfilled, (state, action) => {
-        state.status = 'idle';
         state.tasks = action.payload;
       })
       .addCase(addNewTask.fulfilled, (state, action) => {
-        state.status = 'idle';
         state.tasks.push(action.payload);
       })
       .addCase(deleteTask.fulfilled, (state, action) => {
-        state.status = 'idle';
         state.tasks = state.tasks.filter(task => task.id !== action.payload);
       })
       .addCase(checkTask.fulfilled, (state, action) => {
@@ -92,6 +93,17 @@ const tasksSlice = createSlice({
       })
       .addCase(deleteCompletedTasks.fulfilled, (state, action) => {
         state.tasks = state.tasks.filter(task => !action.payload.includes(task.id));
+      })
+      .addMatcher((action) => action.type.endsWith('/pending'), (state) => {
+        state.status = 'loading';
+        state.error = null;
+      })
+      .addMatcher((action) => action.type.endsWith('/fulfilled'), (state) => {
+        state.status = 'idle';
+      })
+      .addMatcher((action) => action.type.endsWith('/rejected'), (state, action) => {
+        state.status = 'idle';
+        state.error = action.payload || action.error.message;
       })
   }
 });

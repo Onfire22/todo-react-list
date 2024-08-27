@@ -176,3 +176,9 @@ input:checked + span {
   border: 1px solid rgb(47, 175, 175);
   transition: 0.3s border ease-in;
 }
+
+.feedback {
+  text-align: center;
+  padding: 10px;
+  color: #ff4747;
+}
