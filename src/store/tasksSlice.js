@@ -71,7 +71,6 @@ const tasksSlice = createSlice({
         state.tasks = state.tasks.filter(task => task.id !== action.payload);
       })
       .addCase(checkTask.fulfilled, (state, action) => {
-        console.log(action.payload)
         const index = state.tasks.findIndex(task => task.id === action.payload.id);
         state.tasks[index].completed = action.payload.completed;
       })

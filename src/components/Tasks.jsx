@@ -1,14 +1,19 @@
 import { useSelector } from "react-redux";
 import Task from "./Task";
+import tasksSelector from "../store/tasksSelector";
 
 const Tasks = () => {
-  const tasks = useSelector(state => state.tasks.tasks);
+  const filter = useSelector(state => state.filter);
+  const tasks = useSelector(state => tasksSelector(state, filter));
+  
   return (
-    <ul className="tasks__list">
-      {tasks.length && tasks.map((task) => {
-        return <Task key={task.id} {...task} />
-      })}  
-    </ul>
+    <>
+      {!!tasks.length && <ul className="tasks__list">
+        {tasks.map((task) => {
+          return <Task key={task.id} {...task} />
+        })}
+      </ul>}
+    </>
   );
 };
 
