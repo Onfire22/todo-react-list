@@ -15,18 +15,21 @@ const Footer = () => {
         <button
           onClick={() => dispatch(getFilter('all'))}
           className="todo__filter-control"
+          style={{border: filter === 'all' && '1px solid rgba(175, 47, 47, 0.15)'}}
         >
           All
         </button>
         <button
           onClick={() => dispatch(getFilter('active'))}
           className="todo__filter-control"
+          style={{border: filter === 'active' && '1px solid rgba(175, 47, 47, 0.15)'}}
         >
           Active
         </button>
         <button
           onClick={() => dispatch(getFilter('completed'))}
           className="todo__filter-control"
+          style={{border: filter === 'completed' && '1px solid rgba(175, 47, 47, 0.15)'}}
         >
           Completed
         </button>

@@ -1,8 +1,15 @@
 import { useDispatch } from "react-redux";
+import cn from 'classnames';
 import { deleteTask, checkTask } from "../store/tasksSlice";
 
 const Task = ({ title, id, completed }) => {
   const dispatch = useDispatch();
+
+  const textClasses = cn('task__text', {
+    'completed-task': completed,
+    'active-task': !completed,
+  });
+
   return (
     <li className="task__item">
       <label>
@@ -14,7 +21,7 @@ const Task = ({ title, id, completed }) => {
         />
         <span className="checkbox"></span>
       </label>
-      <p>{title}</p>
+      <p className={textClasses}>{title}</p>
       <button 
         className="todo__filter-control"
         onClick={() => dispatch(deleteTask(id))}

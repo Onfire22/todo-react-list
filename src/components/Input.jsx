@@ -7,6 +7,9 @@ const Input = () => {
   const dispatch = useDispatch();
 
   const inputHandler = (e) => {
+    if (!text) {
+      return;
+    }
     if (e.key === 'Enter') {
       dispatch(addNewTask(text));
       setText('');
@@ -14,6 +17,9 @@ const Input = () => {
   };
 
   const clickHandler = () => {
+    if (!text) {
+      return;
+    }
     dispatch(addNewTask(text));
     setText('');
   };
