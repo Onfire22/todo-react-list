@@ -1,6 +1,7 @@
 import { useSelector, useDispatch } from "react-redux";
 import { getFilter } from "../store/filtersSlice";
 import tasksSelector from "../store/tasksSelector";
+import { deleteCompletedTasks } from "../store/tasksSlice";
 
 const Footer = () => {
   const filter = useSelector(state => state.filter);
@@ -9,7 +10,7 @@ const Footer = () => {
   
   return (
     <footer className="todo__footer">
-      <p className="todo__footer-count">{tasks.length} items left</p>
+      <p className="todo__footer-count">{(tasks.filter(task => !task.completed)).length} items left</p>
       <div className="todo__footer-controls">
         <button
           onClick={() => dispatch(getFilter('all'))}
@@ -30,7 +31,7 @@ const Footer = () => {
           Completed
         </button>
       </div>
-      <button className="todo__clear-control">Clear completed</button>
+      <button onClick={() => dispatch(deleteCompletedTasks())} className="todo__clear-control">Clear completed</button>
     </footer>
   );
 };

@@ -41,6 +41,22 @@ const checkTask = createAsyncThunk(
   }
 );
 
+const deleteCompletedTasks = createAsyncThunk(
+  'tasks/deleteCompleted',
+  async (_, { getState }) => {
+    const completed = getState().tasks.tasks
+      .filter(task => task.completed)
+      .reduce((acc, task) => {
+        acc.push(task.id);
+        return acc;
+      }, []);
+      await completed.forEach(id => {
+        axios.delete(`http://localhost:3001/tasks/${id}`);
+    });
+    return completed;
+  }
+);
+
 const tasksSlice = createSlice({
   name: 'tasks',
   initialState: {
@@ -74,9 +90,12 @@ const tasksSlice = createSlice({
         const index = state.tasks.findIndex(task => task.id === action.payload.id);
         state.tasks[index].completed = action.payload.completed;
       })
+      .addCase(deleteCompletedTasks.fulfilled, (state, action) => {
+        state.tasks = state.tasks.filter(task => !action.payload.includes(task.id));
+      })
   }
 });
 
-export { getAllTasks, addNewTask, deleteTask, checkTask };
+export { getAllTasks, addNewTask, deleteTask, checkTask, deleteCompletedTasks };
 
 export default tasksSlice.reducer;
