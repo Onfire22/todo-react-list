@@ -1,19 +1,9 @@
 {
   "tasks": [
     {
-      "title": "some task",
-      "id": "1",
-      "status": "active"
-    },
-    {
-      "id": "whvffGtIZGti4ojMRq7ER",
-      "title": "hhl",
-      "status": "active"
-    },
-    {
-      "id": "IY_LLcdW3hStjrsWp1rFI",
-      "title": "asdasdas",
-      "status": "active"
+      "id": "deBRyZfz6Svb3Xwurv8y_",
+      "title": "12332",
+      "completed": true
     }
   ]
 }

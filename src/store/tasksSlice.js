@@ -14,7 +14,7 @@ const addNewTask = createAsyncThunk(
   async (title) => {
     const newTask = {
       title,
-      status: 'active',
+      completed: false,
       id: nanoid(),
     };
     await axios.post('http://localhost:3001/tasks', newTask);
@@ -27,6 +27,17 @@ const deleteTask = createAsyncThunk(
   async (id) => {
     await axios.delete(`http://localhost:3001/tasks/${id}`);
     return id;
+  }
+);
+
+const checkTask = createAsyncThunk(
+  'tasks/checkTask',
+  async (id, { getState }) => {
+    const task = getState().tasks.tasks.find(task => task.id === id);
+    const response = axios.patch(`http://localhost:3001/tasks/${id}`, {
+      completed: !task.completed
+    });
+    return (await response).data;
   }
 );
 
@@ -59,9 +70,14 @@ const tasksSlice = createSlice({
         state.status = 'idle';
         state.tasks = state.tasks.filter(task => task.id !== action.payload);
       })
+      .addCase(checkTask.fulfilled, (state, action) => {
+        console.log(action.payload)
+        const index = state.tasks.findIndex(task => task.id === action.payload.id);
+        state.tasks[index].completed = action.payload.completed;
+      })
   }
 });
 
-export { getAllTasks, addNewTask, deleteTask };
+export { getAllTasks, addNewTask, deleteTask, checkTask };
 
 export default tasksSlice.reducer;

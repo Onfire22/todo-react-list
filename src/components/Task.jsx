@@ -1,11 +1,19 @@
 import { useDispatch } from "react-redux";
-import { deleteTask } from "../store/tasksSlice";
+import { deleteTask, checkTask } from "../store/tasksSlice";
 
-const Task = ({ title, id, status }) => {
+const Task = ({ title, id, completed }) => {
   const dispatch = useDispatch();
   return (
     <li className="task__item">
-      <input type="checkbox" />
+      <label>
+        <input
+          type="checkbox"
+          className="visually-hidden"
+          checked={completed}
+          onChange={() => dispatch(checkTask(id))}
+        />
+        <span className="checkbox"></span>
+      </label>
       <p>{title}</p>
       <button 
         className="todo__filter-control"
