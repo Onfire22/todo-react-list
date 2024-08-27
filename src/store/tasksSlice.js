@@ -108,6 +108,12 @@ const tasksSlice = createSlice({
   }
 });
 
-export { getAllTasks, addNewTask, deleteTask, checkTask, deleteCompletedTasks };
+export {
+  getAllTasks,
+  addNewTask,
+  deleteTask,
+  checkTask,
+  deleteCompletedTasks
+};
 
 export default tasksSlice.reducer;

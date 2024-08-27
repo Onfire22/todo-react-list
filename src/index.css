@@ -39,7 +39,8 @@ button {
 }
 
 .main {
-  width: 100%;
+  max-width: 1024px;
+  margin: 0 auto;
   height: 100vh;
   display: flex;
   align-items: center;
@@ -70,12 +71,35 @@ button {
   outline: none;
 }
 
+.arrow-icon-down {
+  rotate: 180deg;
+  transition: 0.3s ease-in;
+}
+
+.arrow-icon-down path {
+  fill: rgb(47, 175, 175);
+}
+
+.arrow-icon-up {
+  rotate: 0deg;
+  transition: 0.3s ease-in;
+}
+
+.search path {
+  transition: 0.3s ease-in;
+}
+
+.search:hover path {
+  fill: rgb(47, 175, 175);
+  transition: 0.3s ease-in;
+}
 
 .input__wrapper {
   padding: 8px 10px;
   display: flex;
+  gap: 10px;
   align-items: center;
-  outline: 1px solid black;
+  border: 1px solid rgb(208, 208, 208);
   border-radius: 3px;
 }
 
@@ -89,6 +113,7 @@ button {
 }
 
 .task__item {
+  margin-top: -1px;
   padding: 8px 8px 8px 24px;
   display: flex;
   align-items: center;
@@ -99,6 +124,10 @@ button {
   line-height: 120%;
   text-align: left;
   border: 1px solid rgb(208, 208, 208);
+}
+
+.task__item:nth-child(1) {
+  box-shadow: 0px -4px 3px rgb(238, 237, 237);
 }
 
 .todo__footer {
@@ -124,6 +153,17 @@ button {
   border-radius: 3px;
 }
 
+.todo__filter-control:hover {
+  color:  rgb(47, 175, 175);
+  transition: 0.3s ease-in;
+}
+
+.delete_task {
+  margin-left: auto;
+  border: 1px solid rgb(208, 208, 208);
+  transition: 0.3s ease-in;
+}
+
 .todo__clear-control {
   color: rgb(103, 99, 99);
   font-size: 16px;
@@ -132,6 +172,12 @@ button {
   text-align: left;
   text-decoration-line: underline;
   border: none;
+  transition: 0.3s color ease-in;
+}
+
+.todo__clear-control:hover {
+  color: rgb(47, 175, 175);
+  transition: 0.3s color ease-in;
 }
 
 .todo__footer-count {
@@ -150,11 +196,13 @@ button {
 .active-task {
   text-decoration: none;
   color: black;
+  transition: 0.3s ease-in;
 }
 
 .completed-task {
   text-decoration: line-through;
   color: rgb(208, 208, 208);
+  transition: 0.3s ease-in;
 }
 
 .checkbox {
@@ -166,7 +214,6 @@ button {
   border-radius: 50%;
   transition: 0.3s border ease-in;
 }
-
 
 input:checked + span {
   background-image: url('./checked.svg');

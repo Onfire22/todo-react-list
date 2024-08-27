@@ -1,5 +1,5 @@
-import { useDispatch } from "react-redux";
 import cn from 'classnames';
+import { useDispatch } from "react-redux";
 import { deleteTask, checkTask } from "../store/tasksSlice";
 
 const Task = ({ title, id, completed }) => {
@@ -23,7 +23,7 @@ const Task = ({ title, id, completed }) => {
       </label>
       <p className={textClasses}>{title}</p>
       <button 
-        className="todo__filter-control"
+        className="todo__filter-control delete_task"
         onClick={() => dispatch(deleteTask(id))}
       >
         Remove Task
