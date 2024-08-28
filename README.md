@@ -1,4 +1,10 @@
-## Todos manager. 
+## Todos manager.
+
+## Stack technologies
+
+*React
+*Redux Toolkit
+*CreateAsyncThunk
 
 ### Description
 
