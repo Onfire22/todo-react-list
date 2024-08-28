@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addNewTask } from "../store/tasksSlice";
 import cn from 'classnames';
@@ -7,6 +7,7 @@ const Input = () => {
   const tasks = useSelector(state => state.tasks.tasks);
   const [text, setText] = useState('');
   const dispatch = useDispatch();
+  const input = useRef(null);
 
   const arrowClasses = cn({
     'arrow-icon-up': !tasks.length,
@@ -29,6 +30,7 @@ const Input = () => {
     }
     dispatch(addNewTask(text));
     setText('');
+    input.current.focus();
   };
 
   return (
@@ -37,6 +39,7 @@ const Input = () => {
         <path d="M3.76 0.906708L16 13.12L28.24 0.906708L32 4.66671L16 20.6667L0 4.66671L3.76 0.906708Z" fill="#D0D0D0"/>
       </svg>
       <input
+        ref={input}
         className="input"
         type="text"
         placeholder="What needs to be done?"
