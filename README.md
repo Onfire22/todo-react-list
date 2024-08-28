@@ -16,3 +16,7 @@ Works async with a server (JSON server).
 ### Installation
 
 `npm i && npm start`
+
+### Demonstration
+
+[todos](https://github.com/user-attachments/assets/416ae942-399b-488c-9a70-257c6eb0bc23)
