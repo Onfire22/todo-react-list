@@ -8,7 +8,7 @@
 
 ### Description
 
-(Test task)[https://docs.google.com/document/d/1jq5yCrQJRHaRG4TabGhDITDMteYuLWG_LjlR9HmB5ac/edit]
+[Test task](https://docs.google.com/document/d/1jq5yCrQJRHaRG4TabGhDITDMteYuLWG_LjlR9HmB5ac/edit)
 
 App allows you add, remove, set to completed tasks.
 Works async with a server (JSON server).
