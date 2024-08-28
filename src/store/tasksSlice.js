@@ -15,12 +15,16 @@ const getAllTasks = createAsyncThunk(
 
 const addNewTask = createAsyncThunk(
   'tasks/newTask',
-  async (title, { rejectWithValue }) => {
+  async (title, { getState, rejectWithValue }) => {
     const newTask = {
       title,
       completed: false,
       id: nanoid(),
     };
+    const isUniqueName = getState().tasks.tasks.some(task => task.title === newTask.title);
+    if (isUniqueName) {
+      return null;
+    }
     try {
       await axios.post('http://localhost:3001/tasks', newTask);
       return newTask;
@@ -75,6 +79,7 @@ const tasksSlice = createSlice({
     tasks: [],
     status: 'idle',
     error: null,
+    message: null,
   },
   extraReducers: (builder) => {
     builder
@@ -82,7 +87,13 @@ const tasksSlice = createSlice({
         state.tasks = action.payload;
       })
       .addCase(addNewTask.fulfilled, (state, action) => {
-        state.tasks.push(action.payload);
+        if (!action.payload) {
+          state.message = 'task with this name is already exists!';
+        } else {
+          state.tasks.push(action.payload);
+          state.error = null;
+          state.message = null;
+        }
       })
       .addCase(deleteTask.fulfilled, (state, action) => {
         state.tasks = state.tasks.filter(task => task.id !== action.payload);

@@ -15,8 +15,8 @@ const App = () => {
 
   return (
     <main className="main">
-      <section className="todo_section">
-        <div className="todo__app">
+      <section className="tasks_section">
+        <div className="tasks__app">
           <Header />
           <Input />
           <Tasks />

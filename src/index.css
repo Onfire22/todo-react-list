@@ -47,11 +47,11 @@ button {
   justify-content: center;
 }
 
-.todo_section {
+.tasks_section {
   width: 80%
 }
 
-.todo__header-title {
+.tasks__header-title {
   width: 100%;
   text-align: center;
   font-size: 100px;
@@ -130,20 +130,20 @@ button {
   box-shadow: 0px -4px 3px rgb(238, 237, 237);
 }
 
-.todo__footer {
+.tasks__footer {
   padding: 8px;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
-.todo__footer-controls {
+.tasks__footer-controls {
   display: flex;
   align-items: center;
   gap: 8px;
 }
 
-.todo__filter-control {
+.tasks__filter-control {
   padding: 8px 16px;
   color: rgb(103, 99, 99);
   font-size: 16px;
@@ -153,7 +153,11 @@ button {
   border-radius: 3px;
 }
 
-.todo__filter-control:hover {
+.tasks__filter-control:disabled {
+  color: rgb(194, 191, 191);
+}
+
+.tasks__filter-control:hover {
   color:  rgb(47, 175, 175);
   transition: 0.3s ease-in;
 }
@@ -164,7 +168,7 @@ button {
   transition: 0.3s ease-in;
 }
 
-.todo__clear-control {
+.tasks__clear-control {
   color: rgb(103, 99, 99);
   font-size: 16px;
   font-weight: 300;
@@ -175,12 +179,12 @@ button {
   transition: 0.3s color ease-in;
 }
 
-.todo__clear-control:hover {
+.tasks__clear-control:hover {
   color: rgb(47, 175, 175);
   transition: 0.3s color ease-in;
 }
 
-.todo__footer-count {
+.tasks__footer-count {
   color: rgb(103, 99, 99);
   font-size: 16px;
   font-weight: 300;
@@ -228,4 +232,10 @@ input:checked + span {
   text-align: center;
   padding: 10px;
   color: #ff4747;
+}
+
+.message-feedback {
+  text-align: center;
+  padding: 10px;
+  color:  rgb(47, 175, 175);
 }

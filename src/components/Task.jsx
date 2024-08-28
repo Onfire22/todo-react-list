@@ -23,7 +23,7 @@ const Task = ({ title, id, completed }) => {
       </label>
       <p className={textClasses}>{title}</p>
       <button 
-        className="todo__filter-control delete_task"
+        className="tasks__filter-control delete_task"
         onClick={() => dispatch(deleteTask(id))}
       >
         Remove Task
