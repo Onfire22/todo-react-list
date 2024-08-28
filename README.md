@@ -1,4 +1,4 @@
-## Todos manager.
+# Todos manager
 
 ## Stack technologies
 
