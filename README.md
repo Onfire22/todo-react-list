@@ -2,9 +2,9 @@
 
 ## Stack technologies
 
-*React
-*Redux Toolkit
-*CreateAsyncThunk
+* React
+* Redux Toolkit
+* CreateAsyncThunk
 
 ### Description
 
